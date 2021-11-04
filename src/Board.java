@@ -4,15 +4,19 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 
 public class Board extends JPanel implements KeyListener{
     
-    int dx = 100;
-    int dy = 100;
+    int dx = 300;
+    int dy = 300;
     JFrame frame;
-
+    int size = 25;
     
+    public ArrayList<Integer> tail = new ArrayList<>();
+
+    this.tail.add(2,5);
 
     public Board(JFrame frame){
 
@@ -25,8 +29,13 @@ public class Board extends JPanel implements KeyListener{
     
     public void paint(Graphics g){
 
-        g.fillRect(dx, dy, 50, 50);
+        tail[2] = [2][5];
 
+        g.fillRect(dx, dy, size, size);
+
+        for(int i = 0; i < tail.length; i++){
+            
+        }
     }
 
     @Override
@@ -35,16 +44,16 @@ public class Board extends JPanel implements KeyListener{
         switch(e.getKeyCode()){
 
           case KeyEvent.VK_LEFT:
-            dx = dx - 50;
+            dx = dx - size;
             break;
           case KeyEvent.VK_RIGHT:
-            dx = dx + 50;
+            dx = dx + size;
             break;
           case KeyEvent.VK_DOWN:
-            dy = dy + 50;
+            dy = dy + size;
             break;
           case KeyEvent.VK_UP:
-            dy = dy - 50;
+            dy = dy - size;
             break;
 
 
