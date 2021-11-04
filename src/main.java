@@ -7,7 +7,7 @@ public class main{
 
         JFrame frame = new JFrame();
         
-        frame.setSize(1000,1000);
+        frame.setSize(650,650);
         frame.getContentPane().add(new Board(frame));
         frame.setBackground(Color.LIGHT_GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
