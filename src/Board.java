@@ -58,8 +58,10 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     
     public void paint(Graphics g){
 
-      g.fillRect(appleX, appleY, size, size);
+      g.setColor(Color.RED);
+      g.fillRect(appleX, appleY, size - 5, size - 5);
 
+      g.setColor(Color.GREEN);
       g.fillRect(dx[0], dy[0], size - 5, size - 5);
 
       for(int i = 0; i < tail; i++){
@@ -115,7 +117,7 @@ public class Board extends JPanel implements ActionListener, KeyListener{
     public void checkApple(){
 
       if(dx[0] == appleX && dy[0] == appleY){
-        tail++;
+        tail = tail + 3;
         appleX = ran.nextInt(24);
         appleX = appleX * size;
         appleY = ran.nextInt(24);
