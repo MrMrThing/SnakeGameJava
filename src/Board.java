@@ -10,21 +10,26 @@ import java.util.ArrayList;
 
 public class Board extends JPanel implements KeyListener{
     
-    int dx = 300;
-    int dy = 300;
+    int dx[] = new int[200];
+    int dy[] =  new int[200];
     JFrame frame;
     int size = 25;
-    int tempx = 300;
-    int tempy = 300;
 
-    char[] tail = new char[5];
+    int tail = 20;
+    int temp1x;
+    int temp1y;
+    int temp2x;
+    int temp2y;
 
     
+      
+
     public Board(JFrame frame){
 
         this.frame = frame;
         frame.addKeyListener(this);
-
+        dx[0] = 300;
+        dy[0] = 300;
         
     }
 
@@ -34,58 +39,61 @@ public class Board extends JPanel implements KeyListener{
     public void paint(Graphics g){
 
 
-        g.fillRect(dx, dy, size, size);
+        for(int i = 0; i < tail; i++){
 
-        for(int i = 0; i < tail.length; i++){
+          if(i == 0){
+            g.fillRect(dx[0], dy[0], size - 5, size - 5);   
+          } else{
+
+            temp2x = dx[i];
+            temp2y = dy[i];
+            System.out.println("Temp2 " + temp2x);
+
+            dx[i] = temp1x;
+            dy[i] = temp1y;
+
+            System.out.println("Temp1 " + temp1x);
+            temp1x = temp2x;
+            temp1y = temp2y;
+
+            g.fillRect(dx[i], dy[i], size - 5, size - 5);
             
-            switch(tail[i-1]){
+            
+          }
 
-                case 'R':
-                  tempx = tempx - 50;
-                  g.fillRect(tempx, tempy, size, size);
-                  tail[i] = 'R';
-                  break;
-                case 'L':
-                  tempx = tempx + 50;
-                  g.fillRect(tempx, tempy, size, size);
-                  tail[i] = 'L';
-                  break;
-                case 'U':
-                  tempy = tempy + 50;
-                  g.fillRect(tempx, tempy, size, size);
-                  tail[i] = 'U';
-                  break;
-                case 'D':
-                  tempy = tempy - 50;
-                  g.fillRect(tempx, tempy-50, size, size);
-                  tail[i] = 'D';
-                  break;
-            }
-        }       
+          
+          
+
+        }
+            
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        
+
+        temp1x = dx[0];
+        temp1y = dy[0];
+
         switch(e.getKeyCode()){
 
           case KeyEvent.VK_LEFT:
-            dx = dx - size;
+            dx[0] = dx[0] - size;
             break;
           case KeyEvent.VK_RIGHT:
-            dx = dx + size;
+            dx[0] = dx[0] + size;
             break;
           case KeyEvent.VK_DOWN:
-            dy = dy + size;
+            dy[0] = dy[0] + size;
             break;
           case KeyEvent.VK_UP:
-            dy = dy - size;
+            dy[0] = dy[0] - size;
             break;
 
 
         }
         
-        frame.repaint();
+      frame.repaint();
+        
     }
 
 
